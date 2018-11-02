@@ -7,16 +7,19 @@ void main() => runApp(new MyApp());
 
 Iterable<LocalizationsDelegate<dynamic>> localDelegates = <LocalizationsDelegate<dynamic>>[
   // ... app-specific localization delegate[s] here
-  ChineseCupertinoLocalizations.delegate,
-  // DefaultCupertinoLocalizations.delegate,
+  // ChineseCupertinoLocalizations.delegate,
+  DefaultCupertinoLocalizations.delegate,
   GlobalMaterialLocalizations.delegate,
   GlobalWidgetsLocalizations.delegate,
 ];
 
 var locale = <Locale>[
+  // const Locale('en', 'US'), // English
+  // const Locale('zh', 'Hans'), // China
+  // const Locale('zh', ''), // China
+
   const Locale('en'), // English
   const Locale('zh'), // China
-  // ... other locales the app supports
 ];
 
 class MyApp extends StatelessWidget {
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: locale,
       ),
       delegates: localDelegates,
-      locale: const Locale('zh'),
+      locale: const Locale('en'),
     );
   }
 }
@@ -52,6 +55,13 @@ class _TextFieldExampleState extends State<TextFieldExample> {
       appBar: AppBar(),
       body: Container(
         child: TextField(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_upward),
+        onPressed: () {
+          final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
+          print("cupertino localization :$localizations");
+        },
       ),
     );
   }
